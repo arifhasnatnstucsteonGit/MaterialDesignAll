@@ -1,22 +1,22 @@
 package com.android.arifhasnat.material;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DataAdapter.ClickListener{
     private String data[]={"Once upon a time ","Once upon a time","Once upon a time","Once upon a time ","Once upon a time ","Once upon a time","Once upon a time"};
     ArrayList<String> arrayList;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    public RecyclerView mRecyclerView;
+    public RecyclerView.Adapter mAdapter;
+    public RecyclerView.LayoutManager mLayoutManager;
+    public DataAdapter dataAdapter;
+
+    private DataAdapter.ClickListener clickListener;
 
 
 
@@ -40,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new DataAdapter(arrayList);
+        mAdapter = new DataAdapter(arrayList,this);
+        dataAdapter=new DataAdapter(this);
+        dataAdapter.setClickListener(this);
         mRecyclerView.setAdapter(mAdapter);
 
 
-        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
+      /*  final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
 
             @Override public boolean onSingleTapUp(MotionEvent e) {
                 return true;
@@ -87,10 +89,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+*/
+
     }
 
 
+    @Override
+    public void itemClicked(View view, int position) {
 
-
-
+    }
 }
