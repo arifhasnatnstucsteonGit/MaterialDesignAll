@@ -1,7 +1,6 @@
 package com.android.arifhasnat.material;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
 
     ArrayList<String> arrayList = new ArrayList<>();
     Context context;
-    public ClickListener clickListener;
+
 
 
     // List datas= Collections.emptyList();
@@ -64,58 +63,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
 
         TextView textViewData;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textViewData = (TextView) itemView.findViewById(R.id.textView_data);
-           // itemView.setOnClickListener(this);
-
-            //textViewData.setOnClickListener(this);
 
 
         }
 
-        @Override
-        public void onClick(View v) {
-
-            context.startActivity(new Intent(context, SubActivity.class));
-
-            if (clickListener!=null)
-            {
-
-                clickListener.itemClicked(v,getAdapterPosition());
-
-            }
-
-           /* if (getAdapterPosition() == 0) {
-                context.startActivity(new Intent(context, SubActivity.class));
-
-            } else if (getAdapterPosition() == 1) {
-
-                Toast.makeText(v.getContext(), "sdfsdfsdfsd" + getAdapterPosition(), Toast.LENGTH_LONG).show();
-
-
-            }*/
-
-        }
 
 
     }
 
-    public interface ClickListener {
-
-        public void itemClicked(View view, int position);
-  
-    }
-
-    public void setClickListener(ClickListener clickListener){
-        this.clickListener=clickListener;
-
-
-    }
 
 
 }
