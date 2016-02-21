@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,9 +26,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
     // List datas= Collections.emptyList();
 
 
-    public DataAdapter(Context context) {
-        this.context = context;
-    }
 
     public DataAdapter(ArrayList<String> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -75,7 +71,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
         public ViewHolder(View itemView) {
             super(itemView);
             textViewData = (TextView) itemView.findViewById(R.id.textView_data);
-            itemView.setOnClickListener(this);
+           // itemView.setOnClickListener(this);
 
             //textViewData.setOnClickListener(this);
 
@@ -84,7 +80,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
 
         @Override
         public void onClick(View v) {
-            if (getAdapterPosition() == 0) {
+
+            context.startActivity(new Intent(context, SubActivity.class));
+
+            if (clickListener!=null)
+            {
+
+                clickListener.itemClicked(v,getAdapterPosition());
+
+            }
+
+           /* if (getAdapterPosition() == 0) {
                 context.startActivity(new Intent(context, SubActivity.class));
 
             } else if (getAdapterPosition() == 1) {
@@ -92,7 +98,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
                 Toast.makeText(v.getContext(), "sdfsdfsdfsd" + getAdapterPosition(), Toast.LENGTH_LONG).show();
 
 
-            }
+            }*/
 
         }
 
@@ -102,6 +108,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>  {
     public interface ClickListener {
 
         public void itemClicked(View view, int position);
+  
     }
 
     public void setClickListener(ClickListener clickListener){

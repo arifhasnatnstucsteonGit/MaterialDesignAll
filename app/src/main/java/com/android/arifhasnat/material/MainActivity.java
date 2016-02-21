@@ -41,8 +41,9 @@ public class MainActivity extends AppCompatActivity implements DataAdapter.Click
 
         // specify an adapter (see also next example)
         mAdapter = new DataAdapter(arrayList,this);
-        dataAdapter=new DataAdapter(this);
+        DataAdapter dataAdapter=new DataAdapter(arrayList,this);
         dataAdapter.setClickListener(this);
+
         mRecyclerView.setAdapter(mAdapter);
 
 
